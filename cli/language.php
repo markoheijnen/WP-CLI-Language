@@ -5,19 +5,10 @@
  *
  * @package wp-cli
  */
-class Language_Command extends \WP_CLI\CommandWithUpgrade {
-
-	protected $item_type = 'language';
-	protected $upgrade_refresh;
+class Language_Command {
 
 	public function __construct() {
-		$this->upgrade_refresh = array( $this, 'update_refresh' );
-
 		parent::__construct();
-	}
-
-	protected function get_upgrader_class( $force ) {
-		return $force ? '\\WP_CLI\\DestructivePluginUpgrader' : 'Language_Pack_Upgrader';
 	}
 
 	protected function update_refresh() {
