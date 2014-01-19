@@ -8,7 +8,7 @@
 class Language_Command {
 
 	public function __construct() {
-		parent::__construct();
+
 	}
 
 	protected function update_refresh() {
@@ -31,7 +31,14 @@ class Language_Command {
 	 * : A particular locale to show the status for.
 	 */
 	public function status( $args ) {
-		parent::status( $args );
+		// Force WordPress to check for updates
+		call_user_func( $this->upgrade_refresh );
+
+		if ( empty( $args ) ) {
+			$this->status_all();
+		} else {
+			$this->status_single( $args );
+		}
 	}
 
 	protected function status_single( $args ) {
